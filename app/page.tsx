@@ -18,7 +18,7 @@ const Index = () => {
       <Navbar />
       <main>
         <Hero />
-        <QuickInfo />
+        <QuickInfo /> 
         <NewsEvents />
         <WhyColumbia />
         <LearningExperience />
