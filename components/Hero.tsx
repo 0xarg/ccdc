@@ -2,8 +2,12 @@
 import { Play, Pause, Search } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { useRotatingTypewriter } from "@/hooks/use-typewriter";
-// We have to set a video instead of a background image
-// The video is in the public folder and is called hero.mp4
+const HERO_VIDEO_URL =
+  "https://pub-fb6fab5030804954ab86da323c27d523.r2.dev/ccdc_draft_1_lowbitrate_1080.mp4";
+
+// Poster: inline SVG gradient matching the overlay – shows instantly while video loads
+const HERO_POSTER =
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1920 1080'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%230a0a0a'/%3E%3Cstop offset='50%25' stop-color='%23121212'/%3E%3Cstop offset='100%25' stop-color='%23080808'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23g)' width='1920' height='1080'/%3E%3C/svg%3E";
 export const Hero = () => {
   const [isPlaying, setIsPlaying] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
@@ -56,19 +60,20 @@ export const Hero = () => {
     console.log("Searching for:", searchQuery);
   };
 
-  // I did set the video url in source but unable to see video still seeing unsplash image
   return (
     <section className="relative min-h-[100vh] flex items-center justify-center overflow-hidden">
       {/* Video Background */}
       <div className="absolute inset-0">
         <video
           ref={videoRef}
+          src={HERO_VIDEO_URL}
+          poster={HERO_POSTER}
+          preload="auto"
           autoPlay
           muted
           loop
           playsInline
-          className="w-full h-full object-cover"
-          src="https://pub-fb6fab5030804954ab86da323c27d523.r2.dev/ccdc_draft_1_lowbitrate_1080.mp4"
+          className="w-full h-full object-cover bg-[hsl(0,0%,8%)]"
         />
         {/* Smooth gradient transition to next dark section */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-[hsl(0,0%,8%)]" />

@@ -15,8 +15,18 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const videoUrl =
+    "https://pub-fb6fab5030804954ab86da323c27d523.r2.dev/ccdc_draft_1_lowbitrate_1080.mp4";
+
   return (
     <html lang="en">
+      <head>
+        {/* Preconnect to R2 CDN for faster video connection */}
+        <link rel="preconnect" href="https://pub-fb6fab5030804954ab86da323c27d523.r2.dev" />
+        <link rel="dns-prefetch" href="https://pub-fb6fab5030804954ab86da323c27d523.r2.dev" />
+        {/* Preload hero video - starts download before React hydrates */}
+        <link rel="preload" href={videoUrl} as="video" type="video/mp4" />
+      </head>
       <body
         className={`${sans.variable} ${serif.variable} antialiased `}
       >
