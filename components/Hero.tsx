@@ -35,6 +35,7 @@ export const Hero = () => {
     deletingSpeed: 40,
     pauseDuration: 2000,
   });
+  // we have to do a task 
 
   useEffect(() => {
     if (videoRef.current) {
